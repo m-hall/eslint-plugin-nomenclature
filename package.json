@@ -16,7 +16,8 @@
     },
     "dependencies": { },
     "repository": {
-        "type": "git"
+        "type": "git",
+        "url": "git://github.com/m-hall/eslint-plugin-nomenclature.git"
     },
     "author": "Michael Hall <github@michaelhall.ca>",
     "license": "MIT",
