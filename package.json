@@ -3,8 +3,14 @@
     "version": "0.0.1",
     "description": "Eslint rules for variable naming.",
     "main": "index.js",
-    "scripts": { },
+    "scripts": {
+        "test": "mocha tests/rules/"
+    },
+    "peerDependencies": {
+        "eslint": ">=0.8.1"
+    },
     "devDependencies": {
+        "mocha": "2.0.1",
         "eslint-tester": "^0.3.0",
         "eslint": ">=0.8.1"
     },
