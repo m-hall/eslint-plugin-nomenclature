@@ -1,6 +1,6 @@
 {
     "name": "eslint-plugin-nomenclature",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Eslint rules for variable naming.",
     "main": "index.js",
     "scripts": {
