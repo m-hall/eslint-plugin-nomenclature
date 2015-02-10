@@ -6,7 +6,7 @@ Enforces prefixes to be added to all function parameters.
 Usage
 -----
 
-```
+```Javascript
 rules: {
     "nomenclature/prefix-parameters": [1, "_"]
 }
@@ -14,7 +14,7 @@ rules: {
 This will add a warning every time a parameter is detected that is not prefixed with "_".
 
 
-```
+```Javascript
 rules: {
     "nomenclature/prefix-parameters": [2, ["req_", "opt_"]
 }

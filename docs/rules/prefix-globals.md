@@ -6,7 +6,7 @@ Enforces a prefix be added to all global variables.
 Usage
 -----
 
-```
+```Javascript
 rules: {
     "nomenclature/prefix-globals": [1, "$"]
 }
