@@ -1,6 +1,6 @@
-eslint-plugin-nomenclature
-==========================
-Add rules to eslint to make variable and parameter name conform to a specific nomenclature.
+eslint-plugin-prefix
+====================
+Add rules to eslint to enforce prefixes on variable names.
 
 [Documentation](docs/index.md)
 

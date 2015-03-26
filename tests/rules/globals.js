@@ -1,10 +1,10 @@
 'use strict';
 
 var linter = require('eslint').linter,
-    ESLintTester = require('eslint-tester'),
-    eslintTester = new ESLintTester(linter);
+    ESLintTester = require('eslint-tester');
+var eslintTester = new ESLintTester(linter);
 
-eslintTester.addRuleTest('./lib/rules/prefix-globals', {
+eslintTester.addRuleTest('./lib/rules/globals', {
     valid: [
         { code: 'var global;', args: [1, ''] },
         { code: 'var _global;', args: [1, '_'] },

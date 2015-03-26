@@ -4,7 +4,7 @@ var linter = require('eslint').linter,
     ESLintTester = require('eslint-tester');
 var eslintTester = new ESLintTester(linter);
 
-eslintTester.addRuleTest('./lib/rules/prefix-parameters', {
+eslintTester.addRuleTest('./lib/rules/parameters', {
     valid: [
         { code: 'function name(test) {}', args: [1, ''] },
         { code: 'function name(_test) {}', args: [1, '_'] },

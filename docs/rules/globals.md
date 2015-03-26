@@ -8,7 +8,7 @@ Usage
 
 ```Javascript
 rules: {
-    "nomenclature/prefix-globals": [1, "$"]
+    "prefix/globals": [1, "$"]
 }
 ```
 This will add a warning every time a global variable is declared with a var statement that is not prefixed with "$".

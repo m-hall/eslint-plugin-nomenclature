@@ -1,7 +1,7 @@
 {
-    "name": "eslint-plugin-nomenclature",
+    "name": "eslint-plugin-prefix",
     "version": "0.1.0",
-    "description": "Eslint rules for variable naming.",
+    "description": "Eslint rules for adding prefixes to variables.",
     "main": "index.js",
     "scripts": {
         "test": "mocha tests/rules/"
@@ -17,14 +17,14 @@
     "dependencies": { },
     "repository": {
         "type": "git",
-        "url": "git://github.com/m-hall/eslint-plugin-nomenclature.git"
+        "url": "git://github.com/m-hall/eslint-plugin-prefix.git"
     },
     "author": "Michael Hall <github@michaelhall.ca>",
     "license": "MIT",
     "keywords": [
         "eslint-plugin",
         "eslintplugin",
-        "nomenclature",
+        "prefix",
         "eslint"
     ]
 }
