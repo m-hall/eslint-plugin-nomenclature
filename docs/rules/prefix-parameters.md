@@ -16,7 +16,7 @@ This will add a warning every time a parameter is detected that is not prefixed 
 
 ```Javascript
 rules: {
-    "nomenclature/prefix-parameters": [2, ["req_", "opt_"]
+    "nomenclature/prefix-parameters": [2, ["req_", "opt_"]]
 }
 ```
-This will add an error every time a parameter is detected that is not prefixed with either "req_" or "opt".
+This will add an error every time a parameter is detected that is not prefixed with either "req_" or "opt_".
