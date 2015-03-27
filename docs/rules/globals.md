@@ -1,5 +1,5 @@
-prefix-parameters
-=================
+globals
+=======
 
 Enforces a prefix be added to all global variables.
 
