@@ -1,0 +1,14 @@
+{
+    "env" : {
+        "node" : true
+    },
+    "globals": {
+    },
+    "rules" : {
+        "camelcase": [2, true],
+        "quotes": [2, "signle"],
+        "no-underscore-dangle": [2, true],
+        "no-undef": [2, false],
+        "dot-notation": [2, false]
+    }
+}
