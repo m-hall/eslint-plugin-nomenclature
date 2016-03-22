@@ -5,10 +5,9 @@
     "globals": {
     },
     "rules" : {
-        "camelcase": [2, true],
-        "quotes": [2, "signle"],
-        "no-underscore-dangle": [2, true],
-        "no-undef": [2, false],
-        "dot-notation": [2, false]
+        "camelcase": 2,
+        "quotes": [2, "single"],
+        "no-underscore-dangle": 2,
+        "no-undef": 2
     }
 }

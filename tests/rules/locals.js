@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
-var rule = require("../../lib/rules/locals"),
-    RuleTester = require("eslint").RuleTester;
+var rule = require('../../lib/rules/locals'),
+    RuleTester = require('eslint').RuleTester;
 
 var ruleTester = new RuleTester();
-ruleTester.run("locals", rule, {
+ruleTester.run('locals', rule, {
     valid: [
         { code: 'function name(){ var local; }', options: [''] },
         { code: 'function name(){ var _local; }', options: ['_'] },
