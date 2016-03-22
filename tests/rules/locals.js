@@ -55,6 +55,11 @@ ruleTester.run("locals", rule, {
             code: 'function name(){ var _level2; function name2(){ var noprefix_from_array_level2_only; }}',
             options: [{'prefix': ['_','a','b','c']}],
             errors: [ { message: 'Local variable "noprefix_from_array_level2_only" is not prefixed with any of "_,a,b,c".' } ]
+        },
+        {
+            code: 'function name(){ var _level2_again; function name2(){ var noprefix2_from_array_level2_only; }}',
+            options: [ ['_','a','b','c'] ],
+            errors: [ { message: 'Local variable "noprefix2_from_array_level2_only" is not prefixed with any of "_,a,b,c".' } ]
         }
     ]
 });
