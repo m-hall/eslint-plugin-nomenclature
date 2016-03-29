@@ -1,34 +1,34 @@
 'use strict';
 
-var linter = require('eslint').linter,
-    ESLintTester = require('eslint-tester');
-var eslintTester = new ESLintTester(linter);
+var rule = require('../../lib/rules/parameters'),
+    RuleTester = require('eslint').RuleTester;
 
-eslintTester.addRuleTest('./lib/rules/parameters', {
+var ruleTester = new RuleTester();
+ruleTester.run('parameters', rule, {
     valid: [
-        { code: 'function name(test) {}', args: [1, ''] },
-        { code: 'function name(_test) {}', args: [1, '_'] },
-        { code: 'function name(__test) {}', args: [1, '__'] },
-        { code: 'function name($TEST) {}', args: [1, '$'] },
-        { code: 'function name(__test, __test2) {}', args: [1, '__'] },
-        { code: 'function name(_test, __test2) {}', args: [1, '_'] },
-        { code: 'function name(req_test, opt_test2) {}', args: [1, ['req_', 'opt_']] }
+        { code: 'function name(test) {}', options: [''] },
+        { code: 'function name(_test) {}', options: ['_'] },
+        { code: 'function name(__test) {}', options: ['__'] },
+        { code: 'function name($TEST) {}', options: ['$'] },
+        { code: 'function name(__test, __test2) {}', options: ['__'] },
+        { code: 'function name(_test, __test2) {}', options: ['_'] },
+        { code: 'function name(req_test, opt_test2) {}', options: [['req_', 'opt_']] }
     ],
 
     invalid: [
         {
             code: 'function name(test) {}',
-            args: [1, '_'],
+            options: ['_'],
             errors: [ { message: 'Parameter "test" is not prefixed with "_".' } ]
         },
         {
             code: 'function name(test1, _test2) {}',
-            args: [1, '_'],
+            options: ['_'],
             errors: [ { message: 'Parameter "test1" is not prefixed with "_".' } ]
         },
         {
             code: 'function name(test1, _test2) {}',
-            args: [1, '__'],
+            options: ['__'],
             errors: [
                 { message: 'Parameter "test1" is not prefixed with "__".' },
                 { message: 'Parameter "_test2" is not prefixed with "__".' }
@@ -36,12 +36,12 @@ eslintTester.addRuleTest('./lib/rules/parameters', {
         },
         {
             code: 'function name($test, _TEST) {}',
-            args: [1, '_'],
+            options: ['_'],
             errors: [ { message: 'Parameter "$test" is not prefixed with "_".' } ]
         },
         {
             code: 'function name($test, _TEST) {}',
-            args: [1, ['req_', 'opt_']],
+            options: [['req_', 'opt_']],
             errors: [
                 { message: 'Parameter "$test" is not prefixed with "req_" or "opt_".' },
                 { message: 'Parameter "_TEST" is not prefixed with "req_" or "opt_".' }

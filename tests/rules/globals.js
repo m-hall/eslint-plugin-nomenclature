@@ -1,36 +1,36 @@
 'use strict';
 
-var linter = require('eslint').linter,
-    ESLintTester = require('eslint-tester');
-var eslintTester = new ESLintTester(linter);
+var rule = require('../../lib/rules/globals'),
+    RuleTester = require('eslint').RuleTester;
 
-eslintTester.addRuleTest('./lib/rules/globals', {
+var ruleTester = new RuleTester();
+ruleTester.run('globals', rule, {
     valid: [
-        { code: 'var global;', args: [1, ''] },
-        { code: 'var _global;', args: [1, '_'] },
-        { code: 'var __global', args: [1, '__'] },
-        { code: 'var $global;', args: [1, '$'] },
-        { code: 'var __global1, __global2;', args: [1, '__'] },
-        { code: 'var _global1, __global2', args: [1, '_'] },
-        { code: 'function name(_param){ var local; }', args: [1, '$'] },
-        { code: 'var $global1; function name(_param){ var local; }', args: [1, '$'] },
-        { code: 'var $global1; function name(_param){ var local; } var $global2;', args: [1, '$'] }
+        { code: 'var global;', options: [''] },
+        { code: 'var _global;', options: ['_'] },
+        { code: 'var __global', options: ['__'] },
+        { code: 'var $global;', options: ['$'] },
+        { code: 'var __global__global2;', options: ['__'] },
+        { code: 'var _global__global2', options: ['_'] },
+        { code: 'function name(_param){ var local; }', options: ['$'] },
+        { code: 'var $global1; function name(_param){ var local; }', options: ['$'] },
+        { code: 'var $global1; function name(_param){ var local; } var $global2;', options: ['$'] }
     ],
 
     invalid: [
         {
             code: 'var global;',
-            args: [1, '_'],
+            options: ['_'],
             errors: [ { message: 'Global variable "global" is not prefixed with "_".' } ]
         },
         {
             code: 'var global, _global2;',
-            args: [1, '_'],
+            options: ['_'],
             errors: [ { message: 'Global variable "global" is not prefixed with "_".' } ]
         },
         {
             code: 'var global, _global2;',
-            args: [1, '__'],
+            options: ['__'],
             errors: [
                 { message: 'Global variable "global" is not prefixed with "__".' },
                 { message: 'Global variable "_global2" is not prefixed with "__".' }
@@ -38,12 +38,12 @@ eslintTester.addRuleTest('./lib/rules/globals', {
         },
         {
             code: 'var $global, _GLOBAL;',
-            args: [1, '_'],
+            options: ['_'],
             errors: [ { message: 'Global variable "$global" is not prefixed with "_".' } ]
         },
         {
             code: 'var _global; function name() {} var _global2, $global3;',
-            args: [1, '_'],
+            options: ['_'],
             errors: [ { message: 'Global variable "$global3" is not prefixed with "_".' } ]
         }
     ]
