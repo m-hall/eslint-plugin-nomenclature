@@ -12,7 +12,9 @@ ruleTester.run('parameters', rule, {
         { code: 'function name($TEST) {}', options: ['$'] },
         { code: 'function name(__test, __test2) {}', options: ['__'] },
         { code: 'function name(_test, __test2) {}', options: ['_'] },
-        { code: 'function name(req_test, opt_test2) {}', options: [['req_', 'opt_']] }
+        { code: 'function name(req_test, opt_test2) {}', options: [['req_', 'opt_']] },
+        { code: '($TEST) => {}', options: ['$'], parserOptions: {ecmaVersion: 6} },
+        { code: '(req_test, opt_test2) => {}', options: [['req_', 'opt_']], parserOptions: {ecmaVersion: 6} }
     ],
 
     invalid: [
@@ -42,6 +44,21 @@ ruleTester.run('parameters', rule, {
         {
             code: 'function name($test, _TEST) {}',
             options: [['req_', 'opt_']],
+            errors: [
+                { message: 'Parameter "$test" is not prefixed with "req_" or "opt_".' },
+                { message: 'Parameter "_TEST" is not prefixed with "req_" or "opt_".' }
+            ]
+        },
+        {
+            code: '(test) => {}',
+            options: ['_'],
+            parserOptions: {ecmaVersion: 6},
+            errors: [ { message: 'Parameter "test" is not prefixed with "_".' } ]
+        },
+        {
+            code: '($test, _TEST) => {}',
+            options: [['req_', 'opt_']],
+            parserOptions: {ecmaVersion: 6},
             errors: [
                 { message: 'Parameter "$test" is not prefixed with "req_" or "opt_".' },
                 { message: 'Parameter "_TEST" is not prefixed with "req_" or "opt_".' }

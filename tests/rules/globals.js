@@ -14,7 +14,8 @@ ruleTester.run('globals', rule, {
         { code: 'var _global__global2', options: ['_'] },
         { code: 'function name(_param){ var local; }', options: ['$'] },
         { code: 'var $global1; function name(_param){ var local; }', options: ['$'] },
-        { code: 'var $global1; function name(_param){ var local; } var $global2;', options: ['$'] }
+        { code: 'var $global1; function name(_param){ var local; } var $global2;', options: ['$'] },
+        { code: '(_param) => { var local; }', options: ['$'], parserOptions: {ecmaVersion: 6} }
     ],
 
     invalid: [
@@ -44,6 +45,12 @@ ruleTester.run('globals', rule, {
         {
             code: 'var _global; function name() {} var _global2, $global3;',
             options: ['_'],
+            errors: [ { message: 'Global variable "$global3" is not prefixed with "_".' } ]
+        },
+        {
+            code: 'var _global; () => {}; var _global2, $global3;',
+            options: ['_'],
+            parserOptions: {ecmaVersion: 6},
             errors: [ { message: 'Global variable "$global3" is not prefixed with "_".' } ]
         }
     ]

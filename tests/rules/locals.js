@@ -14,7 +14,11 @@ ruleTester.run('locals', rule, {
         { code: 'function name(){ var _local, __local2; }', options: ['_'] },
         { code: 'function name(){ var local; function name2(){ var _local2; }}', options: [{'prefix': '_', 'level': 2}] },
         { code: 'function name(){ var _level1; function name2(){ var _local2, aArray, bBool, cChar; }}', options: [{'prefix': ['_','a','b','c'], 'level': 1}] },
-        { code: 'function name(){ var level2Only; function name2(){ var _local2, aArray, bBool, cChar; }}', options: [{'prefix': ['_','a','b','c'], 'level': 2}] }
+        { code: 'function name(){ var level2Only; function name2(){ var _local2, aArray, bBool, cChar; }}', options: [{'prefix': ['_','a','b','c'], 'level': 2}] },
+        { code: '() => { var _local, __local2; }', options: ['_'], parserOptions: {ecmaVersion: 6} },
+        { code: 'function name(){ var level2Only; () => { var _local2, aArray, bBool, cChar; }}', options: [{'prefix': ['_','a','b','c'], 'level': 2}], parserOptions: {ecmaVersion: 6} },
+        { code: '() =>{ var level2Only; function name2(){ var _local2, aArray, bBool, cChar; }}', options: [{'prefix': ['_','a','b','c'], 'level': 2}], parserOptions: {ecmaVersion: 6} },
+        { code: '() =>{ var level2Only; () => { var _local2, aArray, bBool, cChar; }}', options: [{'prefix': ['_','a','b','c'], 'level': 2}], parserOptions: {ecmaVersion: 6} }
     ],
 
     invalid: [
@@ -60,6 +64,30 @@ ruleTester.run('locals', rule, {
             code: 'function name(){ var _level2_again; function name2(){ var noprefix2_from_array_level2_only; }}',
             options: [ ['_','a','b','c'] ],
             errors: [ { message: 'Local variable "noprefix2_from_array_level2_only" is not prefixed with any of "_,a,b,c".' } ]
+        },
+        {
+            code: '() => { var local; }',
+            options: ['_'],
+            parserOptions: {ecmaVersion: 6},
+            errors: [ { message: 'Local variable "local" is not prefixed with "_".' } ]
+        },
+        {
+            code: '() => { var local; function name2(){ var local2; }}',
+            options: [{'prefix': '_', 'level': 2}],
+            parserOptions: {ecmaVersion: 6},
+            errors: [ { message: 'Local variable "local2" is not prefixed with "_".' } ]
+        },
+        {
+            code: 'function name(){ var local; () => { var local2; }}',
+            options: [{'prefix': '_', 'level': 2}],
+            parserOptions: {ecmaVersion: 6},
+            errors: [ { message: 'Local variable "local2" is not prefixed with "_".' } ]
+        },
+        {
+            code: '() => { var local; () => { var local2; }}',
+            options: [{'prefix': '_', 'level': 2}],
+            parserOptions: {ecmaVersion: 6},
+            errors: [ { message: 'Local variable "local2" is not prefixed with "_".' } ]
         }
     ]
 });
