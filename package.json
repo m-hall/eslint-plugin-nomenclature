@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-prefix",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Eslint rules for adding prefixes to variables.",
   "main": "index.js",
   "scripts": {
